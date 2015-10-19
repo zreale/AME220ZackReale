@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>
+  Image Resizer
+  <link rel="stylesheet" type="text/css" href="jquery.resizeandcrop.css">
+</title>
+<style>
+  #imagePreview{
+      height: 300px;
+      width: 300px;
+      display: block;
+  }
+</style>
+<script src="jquery-1.11.3.js" type="text/javascript"></script>
+<script>
+
+var mw = 600;
+var mh = 600;
+
+function showme
+
+function imageUploaded()
+{
+   var file = $('#uploadImage').get(0);
+   if(file.files[0].type.split("/")[0].toLowerCase() != "image"){
+        alert("Incorrect file type -- Please ensure you are uploading an image file.");
+   }
+   if ( file.files && file.files[0] && file.files[0].type.split("/")[0].toLowerCase() === "image") {
+        var FR= new FileReader();
+        FR.onload = function(e) {
+            var data = e.target.result;
+            var canvas = document.createElement("canvas");
+            var img = document.createElement("img");
+            img.onload= function(){
+                 var MAX_WIDTH = mw;
+                 var MAX_HEIGHT = mh;
+                 var width = img.width;
+                 var height = img.height;
+                 var w2 = width;
+                 var h2 = height;
+				 
+                 if (width > height) {
+                     if (width > MAX_WIDTH) {
+                        h2 = height * MAX_WIDTH / width;
+                        w2 = MAX_WIDTH;
+                    }
+                 } else {
+                     if (height > MAX_HEIGHT) {
+                        w2 = width * MAX_HEIGHT / height;
+                        h2 = MAX_HEIGHT;
+                    }
+                }
+                canvas.width = w2;
+                canvas.height = h2;
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(img, 0, 0, w2, h2);
+                var base64St = canvas.toDataURL("image/png");
+                document.getElementById("imagePreview").src = base64St;
+            }
+            img.src = data;
+        };  
+        FR.readAsDataURL( file.files[0] );
+   }
+}
+</script>
+
+</head>
+
+<body>
+    <img class="crop-me" src="placeholder.png" realsrc="imagetoloadandcrop.png" />
+           <script type="text/javascript" src="jquery.resizeandcrop.js"></script>
+           <script>
+               $("img.crop-me").resizeAndCrop();
+           </script>
+	<button type="button" onclick="alert('<select name="Google" form="Google">')")>iOS</button>
+	<button type="button" onclick="alert(<select name="Apple" form="Apple">)">Android</button>
+	<select name="Apple" form="Apple">
+	  <option value="120"> 512x512 iTunesArtwork</option>
+	  <option value="72">1024x1024 iTunesArtwork@2x</option>
+	</select>
+	<select name="Google" form="Google">
+	  <option value="120"> 120 px 120</option>
+	  <option value="72">72 px 72</option>
+	</select>
+  <input type="file" name="uploadImage" id="uploadImage" onchange="imageUploaded()">
+  <img id="imagePreview">
+</body>
+
+
+</html>
