@@ -78,10 +78,16 @@
 		drawCanvas();
 		
 	}
+	var outputSizes = "default";
 	
 	var sizes = [ 30, 69, 23, 100];
 	
+	
+	var sizesiPhone = [512, 1024, 120, 180, 76, 152, 40, 80, 120, 29, 58, 87, 57, 114, 72, 144, 50, 100];
+	var sizesAndroid = [50, 72, 96, 144, 192, 512];
+	
 	function crop(){
+		if((img_x < crop_x) && (img_y < crop_y) && ((img_x + w2) > (crop_x + crop_width)) && ((img_y + h2) > (crop_y + crop_height)) ){
 		var newPicX = ((crop_x-img_x)/w2) * img.width;
 		var newPicY = ((crop_y-img_y)/h2) * img.height;
 		var newPicWid = crop_width * (img.width/w2);
