@@ -82,6 +82,8 @@
 	var sizes = [ 30, 69, 23, 100];
 	
 	function crop(){
+		// &&  ||
+		if((img_x < crop_x) && (img_y < crop_y)  && ((img_x+w2) > (crop_x + crop_width)) && ((img_y+h2) > (crop_y + crop_height))){
 		var newPicX = ((crop_x-img_x)/w2) * img.width;
 		var newPicY = ((crop_y-img_y)/h2) * img.height;
 		var newPicWid = crop_width * (img.width/w2);
@@ -103,6 +105,10 @@
 		
 		canvas.width = MAX_WIDTH;
 		canvas.height = MAX_HEIGHT;
+		}
+		else{
+			alert("Part of your crop area is empty!");
+		}
 	}
 	
 	function newImg(c_image, size){
@@ -290,10 +296,12 @@ function resizeImage( x, y){
 	 else{  img_x = centerX - distX; }
 	  w2 = distX * 2;
 	  
-	 var distY = centerY - y;
+	/* var distY = centerY - y;
 	 if(y < centerY){ img_y = y; }
 	 else{  img_y = centerY - distY; }
-	  h2 = distY * 2;
+	  h2 = distY * 2;*/
+	  h2 = w2 * (img.height / img.width);
+	  img_y = centerY - (h2/2);
 	  
 	  drawCanvas();
 	  
