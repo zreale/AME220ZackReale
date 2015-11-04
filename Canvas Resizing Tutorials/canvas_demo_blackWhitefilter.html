@@ -78,16 +78,12 @@
 		drawCanvas();
 		
 	}
-	var outputSizes = "default";
 	
 	var sizes = [ 30, 69, 23, 100];
 	
-	
-	var sizesiPhone = [512, 1024, 120, 180, 76, 152, 40, 80, 120, 29, 58, 87, 57, 114, 72, 144, 50, 100];
-	var sizesAndroid = [50, 72, 96, 144, 192, 512];
-	
 	function crop(){
-		if((img_x < crop_x) && (img_y < crop_y) && ((img_x + w2) > (crop_x + crop_width)) && ((img_y + h2) > (crop_y + crop_height)) ){
+		// &&  ||
+		if((img_x < crop_x) && (img_y < crop_y)  && ((img_x+w2) > (crop_x + crop_width)) && ((img_y+h2) > (crop_y + crop_height))){
 		var newPicX = ((crop_x-img_x)/w2) * img.width;
 		var newPicY = ((crop_y-img_y)/h2) * img.height;
 		var newPicWid = crop_width * (img.width/w2);
@@ -97,8 +93,6 @@
 		canvas.height = newPicHei;
 		
 		ctx.drawImage(img, newPicX, newPicY, newPicWid, newPicHei,  0, 0, canvas.width, canvas.height);
-		
-		blackAndWhite(0,0,canvas.width, canvas.height);
 		
 		var croppedImage = new Image();
 		croppedImage.src = canvas.toDataURL();
@@ -111,6 +105,10 @@
 		
 		canvas.width = MAX_WIDTH;
 		canvas.height = MAX_HEIGHT;
+		}
+		else{
+			alert("Part of your crop area is empty!");
+		}
 	}
 	
 	function newImg(c_image, size){
@@ -126,22 +124,6 @@
 	  document.getElementById("image"+size).style.height = size + "px";
 	  document.getElementById("image"+size).style.width = size + "px";
 	
-	}
-	
-	function blackAndWhite(x, y, w, h){
-		
-			//https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
-				var myImageData = ctx.getImageData(x, y, w, h);
-				
-			
-				for(var i=0; i<w*h*4; i+=4){
-					var average =  (myImageData.data[i] +  myImageData.data[i+1] +  myImageData.data[i+2])/ 3 ; 
-					   myImageData.data[i] = average;
-					   myImageData.data[i+1] = average;
-					   myImageData.data[i+2] = average;
-				}
-				
-				ctx.putImageData(myImageData, x,y);	
 	}
 	
 	function drawCanvas(){
@@ -175,8 +157,6 @@
 		var imgCroppedHei = crop_height * (img.height / h2);
 		
 		ctx.drawImage(img , imgCroppedX  ,  imgCroppedY ,  imgCroppedWid , imgCroppedHei , crop_x, crop_y, crop_width, crop_height  );
-		
-		blackAndWhite(crop_x, crop_y, crop_width, crop_height);
 		
 		
 		var base64St = canvas.toDataURL("image/png");
@@ -316,10 +296,12 @@ function resizeImage( x, y){
 	 else{  img_x = centerX - distX; }
 	  w2 = distX * 2;
 	  
-	 var distY = centerY - y;
+	/* var distY = centerY - y;
 	 if(y < centerY){ img_y = y; }
 	 else{  img_y = centerY - distY; }
-	  h2 = distY * 2;
+	  h2 = distY * 2;*/
+	  h2 = w2 * (img.height / img.width);
+	  img_y = centerY - (h2/2);
 	  
 	  drawCanvas();
 	  
@@ -330,19 +312,6 @@ function resizeImage( x, y){
 </head>
 
 <body>
-	1) when resizing the image, lock the aspect ratio so the the width and height remain in the correct proportion
-
-	2) when cropping image, send an alert to the user if part of the cropped image is empty (for example, if the image is too far to the left, some of the cropped area on the right might be blank)
-
-	3) set up so that the cropped images can export all the correct sizes for iphone or android, and give the user the option of which device they are creating images for 
-
-	Extra Credit Options:
-
-	1)  add a new key command that can rotate the image (look up "html canvas rotate"). 
-
-	2)  in the github folder, there is a new html file called "canvas_demo_blackWhitefilter.html". In this, a pixel filter is used to turn the image into a greyscale image. Please create your own pixel filter (be creative!) and explain what it does. Create a button so that users can turn the filter on and off. 
-
-	
   <input type="file" name="uploadImage" id="uploadImage" onChange="imageUploaded()">
   <img draggable="false" id="imagePreview">
 </body>
