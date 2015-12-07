@@ -1,0 +1,41 @@
+<!DOCTYPE html>,
+
+// I am very lost
+<html>
+Binary ops Code for labeling objects?
+<head>
+
+</head>
+<script>
+	var binaryOps={
+	a:null,
+	b:null,
+	sum: function(){
+		binaryOps.a + binaryOps.b;
+		return binaryOps.a +binaryOps.b
+	},
+	diff: function(){
+		binaryOps.a - binaryOps.b
+		return binaryOps.a - binaryOps.b
+	},
+	isGreaterThan: function(a,b){
+		binaryOps.a > binaryOps.b
+		return binaryOps.a > binaryOps.b
+	},
+	setValue: function(a,b){
+	binaryOps.a = a;
+	binaryOps.b =b;
+	}
+}
+	
+	var startUp =function (){
+		binaryOps.setValue(4,5);
+		alert(binaryOps.sum());	
+		alert(binaryOps.diff());	
+		alert(binaryOps.isGreaterThan());	
+	}
+</script>
+<body onload="startUp()">
+
+</body>
+<html>

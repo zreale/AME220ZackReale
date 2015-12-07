@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Final Fantasy 14</title>
-
+    <!-- Ply Buttons -->
+		<link href="css/ply.css" rel="stylesheet" type="text/css"/>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -23,11 +24,13 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+		
+		<link rel="stylesheet" href="css/animate.css">
 
 </head>
 
 <body>
-	<CENTER><IMG SRC="images/ff14reborn_header.jpg"> </CENTER>
+	<CENTER><IMG SRC="images/ff14reborn_header.jpg" id= "home" class= "head wow flash"> </CENTER>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,20 +43,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" src=/index.html href="#">Home</a>
+                <a class="navbar-brand" src=/index.html href="#home">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a Onclick="window.location.href='http://ffxiv.consolegameswiki.com/wiki/Dark_Knight'"  href="#">Dark Knight</a>
+                        <a onclick="darkFunction()"  id="darkOne" onclick="darkFunction()" href="#dk" >Dark Knight</a>
                     </li>
                     <li>
-                        <a Onclick="window.location.href='http://ffxiv.consolegameswiki.com/wiki/Astrologian'"  href="#">Astrologian</a>
+                        <a onclick="darkFunction()" id="astroOne" href="#as">Astrologian</a>
                     </li>
                     <li>
-                        <a Onclick="window.location.href='http://ffxiv.consolegameswiki.com/wiki/Machinist'"  href="#">Machinist</a>
+                        <a onclick="darkFunction()" id="mechOne" href="#ma">Machinist</a>
                     </li>
+                    <li>
+                        <a id="sub" onclick="subFunction()" href="#subscribe">Subscribe to our News Letter</a>
+                    </li>
+					
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -75,13 +82,13 @@
         <!-- /.row -->
 
         <!-- Project One -->
-        <div class="row">
+        <div class="row wow fadeInRight">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="images/dark.png" alt="">
+                    <img class="wow bounceInUp" src="images/dark.png" alt="">
                 </a>
             </div>
-            <div class="col-md-5">
+            <div id="dk" class="col-md-5">
                 <h3>Dark Knight</h3>
                 <h4>Tank</h4>
                 <p>The pious Ishgardian clergy guide the flock, and the devout knights protect the weak. Yet even the holiest of men succumb to the darkest of temptations.
@@ -99,13 +106,15 @@ These sentinels bear no shields declaring their allegiance. Instead, their great
         <hr>
 
         <!-- Project Two -->
-        <div class="row">
+        <div class="row wow fadeInRight">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive"src= "images/astro.png" alt="">
+						
+                    <img class="wow bounceInUp"  src= "images/astro.png" "">
+				
                 </a>
             </div>
-            <div class="col-md-5">
+            <div id="as" class="col-md-5">
                 <h3>Astrologian</h3>
                 <h4>Healer</h4>
                 <p>Ever has man coveted knowledge, and none more so than that of his fate. Thus did he labor to master the skill of foresight—but initial efforts bore little fruit. That is, until he looked to the stars above, which foretell the coming seasons, and learned to read the heavens.
@@ -121,13 +130,13 @@ Thus was astromancy born—a new form of magick which grants its users power ove
         <hr>
 
         <!-- Project Three -->
-        <div class="row">
+        <div class="row wow fadeInRight">
             <div class="col-md-7">
                 <a href="#">
-                    <img class="img-responsive" src="images/mach.png" alt="">
+                    <img class="wow bounceInUp" src="images/mach.png" alt="">
                 </a>
             </div>
-            <div class="col-md-5">
+            <div id="ma" class="col-md-5">
                 <h3>Machinist</h3>
                 <h4>DPS</h4>
                 <p>The war with Dravania rages on, brutal and unrelenting. With no end in sight, the Holy See grows desperate. As her dragoons lay down their lives in defense of their home, Ishgard turns to technology to protect her sons and daughters. Great cannons and ballistae now line the city walls, plucking dragons from the sky.
@@ -153,10 +162,149 @@ Following the example of Cid Garlond, who has demonstrated the potency of magite
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+	  <!-- Ply files -->
+ 	 <script src="js/Ply.js"></script>
+ 	 <script src="js/Ply.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+	
+    <script src="js/wow.min.js"></script>
+                 <script>
+                 new WOW().init();
+                 </script>
+<script>
+$(function() {
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000);
+        return false;
+      }
+    }
+  });
+});
+</script>
+			<script>
+					Ply.dialog("alert", "Hello Welcome AME220; I have master Ply and wow");
+						</script>
+					
+					<script>
+					$(document.getElementById("darkOne").onclick = function darkFunction() {
+						
+	
+						Ply.dialog({
+						  "intro": {
+						    ui: "confirm",
+						    data: {
+						      text: "Look at this moogle?",
+						      ok: "Yes",
+						      cancel: "No"
+						    },
+						    next: "congratulations", // OK button
+						    nextEffect: "3d-flip[180,-180]",
+						    back: "exit", // Cancel button
+						    backEffect: "scale"
+						  },
+						  "congratulations": {
+						    data: {
+						      children: [{
+						        tag: "img",
+						        src: "http://orig08.deviantart.net/aaf8/f/2011/284/3/d/moogle_by_melissah84-d4ci2o4.jpg"
+						      }],
+						      ok: "Okay"
+						    }
+						  },
+						  "exit": {
+						    data: "Kupo!"
+						  }
+						});
+						
+					});
+					
+					</script>
+					<script>
+					$(document.getElementById("mechOne").onclick = function darkFunction() {
+						
+	
+						Ply.dialog({
+						  "intro": {
+						    ui: "confirm",
+						    data: {
+						      text: "Look at this moogle?",
+						      ok: "Yes",
+						      cancel: "No"
+						    },
+						    next: "congratulations", // OK button
+						    nextEffect: "3d-flip[180,-180]",
+						    back: "exit", // Cancel button
+						    backEffect: "scale"
+						  },
+						  "congratulations": {
+						    data: {
+						      children: [{
+						        tag: "img",
+						        src: "http://orig08.deviantart.net/aaf8/f/2011/284/3/d/moogle_by_melissah84-d4ci2o4.jpg"
+						      }],
+						      ok: "Okay"
+						    }
+						  },
+						  "exit": {
+						    data: "Kupo!"
+						  }
+						});
+						
+					});
+					
+					</script>
+					<script>
+					$(document.getElementById("astroOne").onclick = function darkFunction() {
+						
+	
+						Ply.dialog({
+						  "intro": {
+						    ui: "confirm",
+						    data: {
+						      text: "Look at this moogle?",
+						      ok: "Yes",
+						      cancel: "No"
+						    },
+						    next: "congratulations", // OK button
+						    nextEffect: "3d-flip[180,-180]",
+						    back: "exit", // Cancel button
+						    backEffect: "scale"
+						  },
+						  "congratulations": {
+						    data: {
+						      children: [{
+						        tag: "img",
+						        src: "http://orig08.deviantart.net/aaf8/f/2011/284/3/d/moogle_by_melissah84-d4ci2o4.jpg"
+						      }],
+						      ok: "Okay"
+						    }
+						  },
+						  "exit": {
+						    data: "Kupo!"
+						  }
+						});
+						
+					});
+					
+					</script>
+					
+					<script>
+						$(document.getElementById("sub").onclick = function subFunction() {	
+						
+							Ply.dialog("prompt", {
+							  title: "Spam subscribe",
+							  form: { email: "E-mail" }
+							});
+					});
+					</script>
 </body>
 
 </html>
